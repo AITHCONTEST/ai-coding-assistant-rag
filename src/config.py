@@ -8,9 +8,7 @@ class Model(str, Enum):
     ChatGPT = "chat-gpt"
 
 
-MODEL_TOKEN: dict[Model, str] = {
-    Model.ChatGPT: "OPENAI_API_KEY"
-}
+MODEL_TOKEN: dict[Model, str] = {Model.ChatGPT: "OPENAI_API_KEY"}
 
 
 class LLMConfig(BaseSettings):

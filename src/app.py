@@ -12,6 +12,4 @@ class App:
         logging.info("Running RAG Application...")
         # TODO: запуск сервера (streamlit / api для плагинов)
         ...
-        self.rag.invoke(
-            "How to avoid circular imports in Python?"
-        )
+        self.rag.invoke("How to avoid circular imports in Python?")

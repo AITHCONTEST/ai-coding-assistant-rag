@@ -15,10 +15,11 @@ load_dotenv(".env")
 def main():
     from src.app import App
     from src.config import Config
+
     config = Config()
     app = App(config)
     app.run()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
