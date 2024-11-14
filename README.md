@@ -28,6 +28,6 @@ Please, use `make` util for running the app:
     make compose-run
     ```
 
-## LLM Models
+## 🤖 LLM Models
 As a LLM Model you can use:
 - ChatGPT
