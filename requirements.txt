@@ -1,0 +1,4 @@
+pymilvus[model]==2.5.0
+FlagEmbedding==1.3.2
+python-dotenv==1.0.1
+torch==2.5.1

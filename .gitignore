@@ -1,0 +1,9 @@
+.git
+__pycache__
+.pytest_cache
+.venv
+.vscode
+.ipynb_checkpoints
+pyproject.toml
+poetry.lock
+Прочее/

@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  inference:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./milvus_data:/app/milvus_data
+    environment:
+      - ENV_FILE=.env
