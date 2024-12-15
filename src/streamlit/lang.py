@@ -1,12 +1,11 @@
 from dataclasses import dataclass
-from typing import List  # NOQA: UP035
 
-from .constants import AI_ROLE_OPTIONS_EN, AI_ROLE_OPTIONS_RU, AI_TALKS_URL, README_URL
+from .constants import AI_ROLE_OPTIONS_EN, AI_TALKS_URL, README_URL
 
 
 @dataclass
 class Locale:
-    ai_role_options: List[str]
+    ai_role_options: list[str]
     ai_role_prefix: str
     ai_role_postfix: str
     title: str
@@ -22,7 +21,6 @@ class Locale:
     speak_btn: str
     input_kind: str
     input_kind_1: str
-    # input_kind_2: str
     select_placeholder1: str
     select_placeholder2: str
     select_placeholder3: str
@@ -47,7 +45,7 @@ class Locale:
 # --- LOCALE SETTINGS ---
 en = Locale(
     ai_role_options=AI_ROLE_OPTIONS_EN,
-    ai_role_prefix="You are a female",
+    ai_role_prefix="You are a male",
     ai_role_postfix="Answer as concisely as possible.",
     title="AI Talks",
     language="English",
@@ -96,3 +94,4 @@ en = Locale(
     """,
 )
 
+# TODO: ru

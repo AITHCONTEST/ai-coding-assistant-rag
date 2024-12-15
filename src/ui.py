@@ -1,6 +1,10 @@
 from streamlit_option_menu import option_menu
-from src.utils.lang import en
-from src.utils.conversation import show_chat_buttons, show_text_input, show_conversation
+from src.streamlit.lang import en
+from src.streamlit.conversation import (
+    show_chat_buttons,
+    show_text_input,
+    show_conversation,
+)
 import streamlit as st
 
 PAGE_TITLE: str = "AI Talks"
@@ -33,26 +37,40 @@ if "messages" not in st.session_state:
 if "user_text" not in st.session_state:
     st.session_state.user_text = ""
 
+
 def main() -> None:
     c1, c2 = st.columns(2)
     with c1, c2:
-        c1.selectbox(label=st.session_state.locale.select_placeholder1, key="model", options=AI_MODEL_OPTIONS)
+        c1.selectbox(
+            label=st.session_state.locale.select_placeholder1,
+            key="model",
+            options=AI_MODEL_OPTIONS,
+        )
         role_kind = c1.radio(
             label=st.session_state.locale.radio_placeholder,
-            options=(st.session_state.locale.radio_text1, st.session_state.locale.radio_text2),
+            options=(
+                st.session_state.locale.radio_text1,
+                st.session_state.locale.radio_text2,
+            ),
             horizontal=True,
         )
         match role_kind:
             case st.session_state.locale.radio_text1:
-                c2.selectbox(label=st.session_state.locale.select_placeholder2, key="role",
-                             options=st.session_state.locale.ai_role_options)
+                c2.selectbox(
+                    label=st.session_state.locale.select_placeholder2,
+                    key="role",
+                    options=st.session_state.locale.ai_role_options,
+                )
             case st.session_state.locale.radio_text2:
-                c2.text_input(label=st.session_state.locale.select_placeholder3, key="role")
+                c2.text_input(
+                    label=st.session_state.locale.select_placeholder3, key="role"
+                )
     if st.session_state.user_text:
         show_conversation()
         st.session_state.user_text = ""
     show_text_input()
     show_chat_buttons()
+
 
 if __name__ == "__main__":
     match selected_lang:
@@ -60,5 +78,8 @@ if __name__ == "__main__":
             st.session_state.locale = en
         case _:
             st.session_state.locale = en
-    st.markdown(f"<h1 style='text-align: center;'>{st.session_state.locale.title}</h1>", unsafe_allow_html=True)
+    st.markdown(
+        f"<h1 style='text-align: center;'>{st.session_state.locale.title}</h1>",
+        unsafe_allow_html=True,
+    )
     main()

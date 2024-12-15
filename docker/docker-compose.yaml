@@ -1,0 +1,31 @@
+services:
+  rag-server:
+    container_name: rag-server
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile-server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./dataset:/app/dataset
+      - ./database:/app/database
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://0.0.0.0:8000/v1/ping" ]
+      interval: 60s
+      timeout: 10s
+      retries: 5
+
+  rag-ui:
+    container_name: rag-ui
+    build:
+      context: ..
+      dockerfile: Dockerfile-ui
+    environment:
+      - SERVER_ADDR:rag-server
+    ports:
+      - "8051:8051"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://0.0.0.0:8051/" ]
+      interval: 60s
+      timeout: 10s
+      retries: 5
