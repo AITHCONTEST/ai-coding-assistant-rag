@@ -17,7 +17,7 @@ Please, use `make` util for running the app:
     make local venv
     python -m src.rag.database_init
     python -m src.server
-    streamlit run src/ui.py
+    streamlit_utils run src/ui.py
     ```
 
 - But also you can simply run it using `docker-compose`:

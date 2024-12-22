@@ -1,6 +1,6 @@
 from streamlit_option_menu import option_menu
-from src.streamlit.lang import en
-from src.streamlit.conversation import (
+from streamlit_utils.lang import en
+from streamlit_utils.conversation import (
     show_chat_buttons,
     show_text_input,
     show_conversation,
