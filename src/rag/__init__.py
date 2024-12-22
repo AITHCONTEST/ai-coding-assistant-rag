@@ -95,6 +95,6 @@ class RAG:
             results, results_score = self._retriever.search(query)
             logging.info(f"Retrived {results=} for {query}")
         except Exception as e:
-            print(f"Error while retriever searching: {e}")
+            logging.error(f"Error while retriever searching: {e}")
             return {}
         return {} if not results else results[0].get("entity", {})

@@ -1,5 +1,3 @@
-import logging
-import sys
 from enum import Enum
 
 from dotenv import load_dotenv
@@ -7,11 +5,6 @@ from pydantic import Field
 from pydantic_settings import BaseSettings
 
 load_dotenv()
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    stream=sys.stdout,
-)
 
 
 class Model(str, Enum):

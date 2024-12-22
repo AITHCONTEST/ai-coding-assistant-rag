@@ -1,3 +1,6 @@
+import logging
+import sys
+
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 from pydantic import BaseModel
@@ -10,6 +13,12 @@ from src.rag import RAG
 config = Config()
 rag = RAG(config.llm)
 app = FastAPI()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    stream=sys.stdout,
+)
 
 
 class ChatCompletionRequest(BaseModel):
