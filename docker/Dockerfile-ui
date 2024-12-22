@@ -1,0 +1,12 @@
+FROM python:3.12
+
+WORKDIR /app
+
+COPY ../requirements.txt .
+RUN pip install -r requirements.txt
+COPY ../utils utils/
+RUN . ./utils/fix_libs.sh
+
+COPY ../src src/
+
+ENTRYPOINT ["streamlit", "run", "src/ui.py", "--server.address", "0.0.0.0"]

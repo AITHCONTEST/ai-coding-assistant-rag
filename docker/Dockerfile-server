@@ -1,0 +1,17 @@
+FROM python:3.12
+
+WORKDIR /app
+
+COPY ../dataset dataset/
+
+COPY ../requirements.txt .
+RUN pip install -r requirements.txt
+COPY ../utils utils/
+RUN . ./utils/fix_libs.sh
+
+COPY ../.env .env
+COPY ../src src/
+
+RUN python -m src.rag.database_init # TODO: init-контейнер
+
+ENTRYPOINT ["python", "-m", "src.server"]
