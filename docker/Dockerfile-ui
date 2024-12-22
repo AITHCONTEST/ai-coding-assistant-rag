@@ -9,4 +9,4 @@ RUN . ./utils/fix_libs.sh
 
 COPY ../src src/
 
-ENTRYPOINT ["streamlit", "run", "src/ui.py"]
+ENTRYPOINT ["streamlit", "run", "src/ui.py", "--server.address", "0.0.0.0"]
