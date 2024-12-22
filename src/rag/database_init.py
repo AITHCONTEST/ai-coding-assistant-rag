@@ -84,6 +84,11 @@ if __name__ == "__main__":
     DEVICE = "cpu"
     COLLECTION_NAME = os.getenv("COLLECTION_NAME")
     URI = os.getenv("MILVUS_DB")  # for Milvus-lite, uri is a local path
+
+    folder_path = os.path.dirname(URI)
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     DATA_PATH = os.getenv("DATA_PATH")
     DEVICE = os.getenv("DEVICE")
 

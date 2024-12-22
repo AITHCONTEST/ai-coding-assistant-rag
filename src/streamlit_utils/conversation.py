@@ -55,26 +55,15 @@ def show_chat(ai_content: str, user_text: str) -> None:
                 st.session_state.past[i],
                 is_user=True,
                 key=str(i) + "_user",
-                seed=st.session_state.seed,
             )
-            message("", key=str(i), seed=st.session_state.seed)
-            st.markdown(st.session_state.generated[i])
-            st.caption(
-                f"""
-                {st.session_state.locale.tokens_count}{st.session_state.total_tokens[i]} |
-                {st.session_state.locale.message_cost}{st.session_state.costs[i]:.5f}$
-            """,
-                help=f"{st.session_state.locale.total_cost}{sum(st.session_state.costs):.5f}$",
-            )
+            message(st.session_state.generated[i], key=str(i))
 
 
 def show_gpt_conversation() -> None:
     try:
-        completion = create_gpt_completion(
-            st.session_state.model, st.session_state.messages
-        )
+        completion = create_gpt_completion("ChatGPT 4o", st.session_state.messages)
         ai_content = completion.get("content")
-        st.session_state.messages.append({"role": "assistant", "content": ai_content})
+        st.session_state.messages.append(("assistant", ai_content))
         if ai_content:
             show_chat(ai_content, st.session_state.user_text)
     except Exception as e:
@@ -83,13 +72,9 @@ def show_gpt_conversation() -> None:
 
 def show_conversation() -> None:
     if st.session_state.messages:
-        st.session_state.messages.append(
-            {"role": "user", "content": st.session_state.user_text}
-        )
+        st.session_state.messages.append(("user", st.session_state.user_text))
     else:
-        ai_role = f"{st.session_state.locale.ai_role_prefix} {st.session_state.role}. {st.session_state.locale.ai_role_postfix}"
         st.session_state.messages = [
-            {"role": "system", "content": ai_role},
-            {"role": "user", "content": st.session_state.user_text},
+            ("user", st.session_state.user_text),
         ]
     show_gpt_conversation()

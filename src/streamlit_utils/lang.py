@@ -24,9 +24,6 @@ class Locale:
     select_placeholder1: str
     select_placeholder2: str
     select_placeholder3: str
-    radio_placeholder: str
-    radio_text1: str
-    radio_text2: str
     stt_placeholder: str
     footer_title: str
     footer_option0: str
@@ -47,7 +44,7 @@ en = Locale(
     ai_role_options=AI_ROLE_OPTIONS_EN,
     ai_role_prefix="You are a male",
     ai_role_postfix="Answer as concisely as possible.",
-    title="AI Talks",
+    title="AI Code Assistant",
     language="English",
     lang_code="en",
     donates="Donates",
@@ -64,9 +61,6 @@ en = Locale(
     select_placeholder1="Select Model",
     select_placeholder2="Select Role",
     select_placeholder3="Create Role",
-    radio_placeholder="Role Interaction",
-    radio_text1="Select",
-    radio_text2="Create",
     stt_placeholder="To Hear The Voice Of AI Press Play",
     footer_title="Support & Feedback",
     footer_option0="Chat",

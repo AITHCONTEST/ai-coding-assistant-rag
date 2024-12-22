@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY ../requirements.txt .
 RUN pip install -r requirements.txt
+COPY ../utils utils/
+RUN . ./utils/fix_libs.sh
 
 COPY ../src src/
 

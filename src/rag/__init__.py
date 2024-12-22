@@ -30,7 +30,9 @@ class RAG:
         "Your task is to help users solve programming questions, which may include providing clear explanations, "
         "identifying issues in provided code, and offering corrected code if necessary.\n"
         "Ensure that responses are clear, helpful, and address any errors in the user's code.\n"
-        "If the question linked with code - try to get data from retriever.\n\n"
+        "If the question linked with code - try to get data from retriever "
+        "(Prefer to answer with retrieved data  if it's ok and if you use retriever - "
+        "add url of the source to the answer).\n\n"
         "Chat History: {chat_history}"
     )
 
@@ -64,7 +66,12 @@ class RAG:
     def invoke(self, messages: list[tuple[str, str]] = None) -> LLMOutput | str:
         try:
             result = self._agent_executor.invoke(
-                {"input": messages[-1][1], "chat_history": messages[:-1]}
+                {
+                    "input": messages[-1][1],
+                    "chat_history": [("system", self._system_message)].extend(
+                        messages[:-1]
+                    ),
+                }
             )
             # if not isinstance(result, LLMOutput):
             #     raise ValueError(f"Unexpected result type: {type(result)}")

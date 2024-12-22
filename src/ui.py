@@ -6,12 +6,21 @@ from streamlit_utils.conversation import (
     show_conversation,
 )
 import streamlit as st
+import sys
+import logging
 
-PAGE_TITLE: str = "AI Talks"
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    stream=sys.stdout,
+)
+
+
+PAGE_TITLE: str = "AI Code Assistant"
 PAGE_ICON: str = "🤖"
 LANG_EN: str = "En"
 AI_MODEL_OPTIONS: list[str] = [
-    "microsoft/Phi-3.5-mini-instruct",
+    "ChatGPT 4o",
 ]
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
@@ -39,32 +48,6 @@ if "user_text" not in st.session_state:
 
 
 def main() -> None:
-    c1, c2 = st.columns(2)
-    with c1, c2:
-        c1.selectbox(
-            label=st.session_state.locale.select_placeholder1,
-            key="model",
-            options=AI_MODEL_OPTIONS,
-        )
-        role_kind = c1.radio(
-            label=st.session_state.locale.radio_placeholder,
-            options=(
-                st.session_state.locale.radio_text1,
-                st.session_state.locale.radio_text2,
-            ),
-            horizontal=True,
-        )
-        match role_kind:
-            case st.session_state.locale.radio_text1:
-                c2.selectbox(
-                    label=st.session_state.locale.select_placeholder2,
-                    key="role",
-                    options=st.session_state.locale.ai_role_options,
-                )
-            case st.session_state.locale.radio_text2:
-                c2.text_input(
-                    label=st.session_state.locale.select_placeholder3, key="role"
-                )
     if st.session_state.user_text:
         show_conversation()
         st.session_state.user_text = ""

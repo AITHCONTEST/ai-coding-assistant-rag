@@ -11,7 +11,7 @@ URL = f"http://{SERVER_ADDR}/v1/chat/completions"
 
 
 @st.cache_data()
-def create_gpt_completion(ai_model: str, messages: list[dict]) -> dict:
+def create_gpt_completion(ai_model: str, messages: list[tuple[str, str]]) -> dict:
     try:
         openai.api_key = st.secrets.api_credentials.api_key
     except (KeyError, AttributeError):

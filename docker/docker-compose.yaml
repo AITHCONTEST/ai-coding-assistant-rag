@@ -19,7 +19,7 @@ services:
     container_name: rag-ui
     build:
       context: ..
-      dockerfile: Dockerfile-ui
+      dockerfile: docker/Dockerfile-ui
     environment:
       - SERVER_ADDR:rag-server
     ports:
