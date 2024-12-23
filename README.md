@@ -48,6 +48,8 @@ Reranker: [BAAI/bge-reranker-v2-m3](https://huggingface.co/BAAI/bge-reranker-v2-
 
 We use Symmetric Search technique – instead of searching for answers relevant to a query, we look for other questions similar to it in the vector database. Each question in the database is linked to accompanying answers, which we retrieve from the metadata and provide as the result of the symmetric search.
 
+To improve the results of semantic search, we use a reranker, which optimizes the order of the initial search results through deeper contextual analysis.
+
 ## 🤖 LLM Models
 
 As a LLM Model you can use:
