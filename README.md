@@ -4,7 +4,17 @@
 
 A system based on Retrieval-Augmented Generation (RAG), which will help 
 the user cope with his errors/problems (similar to answers on StackOverflow). 
-The assistant will use a database based on answers from StacOverflow/Habr answers.
+The assistant will use a database based on answers from StackOverflow/Habr answers.
+
+# 🖼 Interface
+The app has a web interface in a form of chat with an AI-bot.
+
+![](./docs/chat.png)
+
+And if the user's question was linked with _programming_ then the LLM-agent will use 
+Retriever with StackOverflow data to answer (and also user will get a link to the source).
+
+![](./docs/refer.png)
 
 ## 🚀 Run
 
@@ -54,3 +64,8 @@ To improve the results of semantic search, we use a reranker, which optimizes th
 
 As a LLM Model you can use:
 - ChatGPT
+
+## 🦸‍ Team
+- [Vnukov Ivan](https://github.com/ONEPANTSU)
+- [Repkin Mikhail](https://github.com/Mikhail-Repkin)
+- [Nikitin Maxim](https://github.com/Maxon081102)
