@@ -34,7 +34,27 @@ Please, use `make` util for running the app:
     ```bash
     make compose-run
     ```
-    
+
+## 🤔 Tests
+
+Before running the tests, create an `.env`-file in the root dir and fill it like in `.env-sample`-file.
+Also, the `server.py` should be running for testing
+
+Please, use `make` util for running the app:
+```bash
+make tests
+```
+This command will create the datasets for testing. After that the `helpfulness` and `reference` tests will be started.
+
+**Results:**
+
+Helpfulness test
+![](./docs/helpfulness_test.png)
+
+Reference test
+![](./docs/reference_test.png)
+
+
 ## 📈 Data & EDA
 
 The database for the RAG service is based on a dataset by Ilya Gusev:
