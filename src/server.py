@@ -22,7 +22,7 @@ logging.basicConfig(
 
 
 class ChatCompletionRequest(BaseModel):
-    model: str
+    model: str = "ChatGPT 4o"
     messages: list[tuple[str, str]]
 
 
