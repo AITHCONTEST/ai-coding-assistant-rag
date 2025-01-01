@@ -16,32 +16,33 @@ def predict_rag_answer(example: dict):
     return {"answer": response}
 
 
-grade_prompt_answer_helpfulness = hub.pull("langchain-ai/rag-answer-helpfulness")
+grade_prompt_answer_accuracy = prompt = hub.pull("langchain-ai/rag-answer-vs-reference")
 
 
-def helpfulness_evaluator(run, example) -> dict:
-    """
-    A simple evaluator for RAG answer helpfulness
-    """
-
+def reference_evaluator(run, example) -> dict:
     input_question = example.inputs["question"]
+    reference = example.outputs["ground_truth"]
     prediction = run.outputs["answer"]
 
     llm = ChatOpenAI(model="gpt-4o", temperature=0)
 
-    answer_grader = grade_prompt_answer_helpfulness | llm
+    answer_grader = grade_prompt_answer_accuracy | llm
 
     score = answer_grader.invoke(
-        {"question": input_question, "student_answer": prediction}
+        {
+            "question": input_question,
+            "correct_answer": reference,
+            "student_answer": prediction,
+        }
     )
     score = score["Score"]
 
-    return {"key": "answer_helpfulness_score", "score": score}
+    return {"key": "answer_v_reference_score", "score": score}
 
 
 results = evaluate(
     predict_rag_answer,
-    data="stackoverflow_rag_helpfulness_test",
-    evaluators=[helpfulness_evaluator],
-    experiment_prefix="helpfulness-test",
+    data="stackoverflow_rag_reference_test",
+    evaluators=[reference_evaluator],
+    experiment_prefix="reference-test",
 )
