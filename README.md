@@ -1,4 +1,4 @@
-# 👨‍💻 Developer Assisting RAG
+# 👨‍💻 AI Coding Assisting RAG
 
 ## 📖 Description
 
